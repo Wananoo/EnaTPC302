@@ -5,8 +5,13 @@
  */
 package Servlet;
 
+import Modelo.Consultas;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,13 +36,13 @@ public class Combo extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        
-        
-        
-        
-        
+            throws ServletException, IOException, SQLException {
+        Consultas cons = new Consultas();
+        request.setAttribute("test","caca" );
+        List<String> listaGerencia = cons.Listar("Gerencias");
+        request.setAttribute("listaGerencia",listaGerencia );
+        List<String> listaDepartamento = cons.Listar("Departamentos");
+        request.setAttribute("listaDepartamento",listaDepartamento );
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -65,7 +70,11 @@ public class Combo extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Combo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -79,7 +88,13 @@ public class Combo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(Combo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
 
     /**

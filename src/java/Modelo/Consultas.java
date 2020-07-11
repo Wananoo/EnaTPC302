@@ -22,15 +22,30 @@ public class Consultas extends conexion{
         Statement st=con.createStatement();
         
          ResultSet rs= null;     
-         String Consulta="select * from Empleados";
+         String Consulta="select * from Usuarios";
          rs = st.executeQuery(Consulta);
          
          while(rs.next()){
-             if(user.equals(rs.getString("Nombre"))&&pass.equals(rs.getString("password")))
+             if(user.equals(rs.getString("Usuario"))&&pass.equals(rs.getString("pass")))
                  return true;
          }
          
         return false;
+    }
+           
+    
+    public List<String> Listar(String tipo) throws SQLException{
+        List<String> lista = new ArrayList<>();
+        Statement st=con.createStatement();
+         ResultSet rs= null;     
+         String Consulta="select Nombre from "+tipo;
+         rs = st.executeQuery(Consulta);
+        while (rs.next())
+        {
+            System.out.println(rs.getString("Nombre"));
+            lista.add(rs.getString("Nombre"));
+        }
+        return lista;
     }
     
     public boolean Mostrar() throws SQLException{

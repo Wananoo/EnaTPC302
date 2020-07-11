@@ -17,7 +17,7 @@ public class conexion {
     public String pass="babo997711X";
     public String host="localhost";
     public String port="3306";
-    public String database="certamen2";
+    public String database="requerimiento";
     public String classname="com.mysql.jdbc.Driver";
     public String url="jdbc:mysql://" +host+ ":" +port+ "/" +database;
     

@@ -51,5 +51,36 @@ CREATE TABLE IF NOT EXISTS `requerimiento`.`usuarios` (
   `Area` VARCHAR(30) NOT NULL,
   `Usuario` VARCHAR(30) NOT NULL,
   `Pass` VARCHAR(30) NOT NULL,
-  PRIMARY KEY (`ID`))
+  PRIMARY KEY (`ID`));
 
+alter table usuarios
+add column Nivel int not null after `Pass`;
+
+
+alter table usuarios
+add column Empleado int not null;
+alter table usuarios
+add constraint fk_empleado_usuario foreign key (Empleado) references `empleados`(ID);
+
+ALTER TABLE `empleados` RENAME TO `Empleados`;
+ALTER TABLE `gerencias` RENAME TO `Gerencias`;
+ALTER TABLE `departamentos` RENAME TO `Departamentos`;
+ALTER TABLE `requerimientos` RENAME TO `Requerimientos`;
+ALTER TABLE `usuarios` RENAME TO `Usuarios`;
+
+select * from gerencias;
+
+insert into Gerencias values
+(1,"Gerencia");
+
+select * from departamentos;
+insert into Departamentos values
+(1,"Gerencia General",1);
+
+select * from empleados;
+insert into Empleados values
+(1,"Eugenio Tapia",1);
+
+select * from usuarios;
+insert into Usuarios values
+(1,"Eugenio",1,"Wananoo","pass",0,1);
