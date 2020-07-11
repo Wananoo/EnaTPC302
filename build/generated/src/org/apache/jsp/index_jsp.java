@@ -3,9 +3,6 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import Modelo.conexion;
 
 public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -46,35 +43,46 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
 
       out.write("\n");
       out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>JSP Page</title>\n");
+      out.write("        <style>\n");
+      out.write("            body {\n");
+      out.write("              background: lightgray;\n");
+      out.write("            }\n");
+      out.write("            .content {\n");
+      out.write("              max-width: 500px;\n");
+      out.write("              margin: auto;\n");
+      out.write("              text-align: center;\n");
+      out.write("              background: white;\n");
+      out.write("              padding: 10px;\n");
+      out.write("            }\n");
+      out.write("        </style>\n");
+      out.write("        <title>Login</title>\n");
+      out.write("        <div class=\"content\">\n");
+      out.write("        <h1>Autenticacion</h1>\n");
+      out.write("        <form action=\"Login\" method=\"get\">\n");
+      out.write("            <table>\n");
+      out.write("                <tr>\n");
+      out.write("                    <td>Usuario</td>\n");
+      out.write("                    <td>:</td>\n");
+      out.write("                    <td><input type=\"text\" name=\"user\" /></td>\n");
+      out.write("                </tr>\n");
+      out.write("                <tr>\n");
+      out.write("                    <td>Password</td>\n");
+      out.write("                    <td>:</td>\n");
+      out.write("                    <td><input type=\"password\" name=\"pass\" /></td>\n");
+      out.write("                </tr>\n");
+      out.write("                <tr>\n");
+      out.write("                    <td colspan=\"2\"><input type=\"submit\" value=\"Ingresar\" /></td>\n");
+      out.write("                </tr>\n");
+      out.write("            </table>\n");
+      out.write("        </form>\n");
+      out.write("        </div>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        <h1>Seleccion</h1>\n");
-      out.write("        <form action=\"Combo\" method=\"get\">\n");
-      out.write("        <p>Selecciona: \n");
-      out.write("            <select name=\"nombre\">\n");
-      out.write("                <option>Seleccione una opcion</option>\n");
-      out.write("                <option>\n");
-      out.write("                    ");
- 
-                        Statement st=con.createStatement();
-        
-         ResultSet rs= null;     
-         String Consulta="select * from Usuarios";
-         rs = st.executeQuery(Consulta); 
-      out.write("\n");
-      out.write("                </option>\n");
-      out.write("            </select>\n");
-      out.write("        </p>\n");
-      out.write("        </form>\n");
+      out.write("        \n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

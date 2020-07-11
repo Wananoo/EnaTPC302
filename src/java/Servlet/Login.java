@@ -5,8 +5,12 @@
  */
 package Servlet;
 
+import Modelo.Consultas;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,6 +35,22 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        
+        String user=request.getParameter("user");
+        String pass=request.getParameter("pass");
+        Consultas cons = new Consultas();
+        
+        try {
+            if(cons.Login(user, pass))
+                response.sendRedirect("Menu.jsp");
+            else
+                response.sendRedirect("index.jsp");
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */

@@ -17,6 +17,22 @@ import java.util.List;
 
 public class Consultas extends conexion{
     
+    
+    public boolean Login(String user, String pass) throws SQLException{
+        Statement st=con.createStatement();
+        
+         ResultSet rs= null;     
+         String Consulta="select * from Empleados";
+         rs = st.executeQuery(Consulta);
+         
+         while(rs.next()){
+             if(user.equals(rs.getString("Nombre"))&&pass.equals(rs.getString("password")))
+                 return true;
+         }
+         
+        return false;
+    }
+    
     public boolean Mostrar() throws SQLException{
         Statement st=con.createStatement();
         
