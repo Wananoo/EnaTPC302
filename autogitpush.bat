@@ -2,7 +2,7 @@
 @SET HH=%time:~-11,2%
 @SET MM=%time:~-8,2%
 @SET /p MENSAJE=Mensaje: 
-@SET MSG=!%DATE% %HH%:%MM% -- %MENSAJE%!
+@SET MSG=!%DATE%-%HH%:%MM%--%MENSAJE%!
 
 git add .
 
