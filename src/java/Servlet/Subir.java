@@ -9,7 +9,6 @@ import Modelo.Consultas;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -22,10 +21,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author wanan
  */
-@WebServlet(name = "Combo", urlPatterns = {"/Combo"})
-public class Combo extends HttpServlet {
+@WebServlet(name = "Subir", urlPatterns = {"/Subir"})
+public class Subir extends HttpServlet {
 
-    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,17 +36,29 @@ public class Combo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         Consultas cons = new Consultas();
-        
+        String Gerencia=request.getParameter("GerenciaDrop");
+        String Departamento=request.getParameter("DepartamentosDrop");
+        String Asignado=request.getParameter("EncargadoDrop");
+        String Detalle=request.getParameter("req");
+        boolean ingresar = cons.IngresarReq(Gerencia,Departamento,Asignado,Detalle);
+        if (ingresar)
+        {
+            response.sendRedirect("IngresadoCor.jsp");
+        }
+        else
+        {
+            response.sendRedirect("IngresadoErr.jsp");
+        }
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Combo</title>");            
+            out.println("<title>Servlet Subir</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Combo at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Subir at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -69,7 +79,7 @@ public class Combo extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(Combo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Subir.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -87,10 +97,8 @@ public class Combo extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(Combo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Subir.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
     }
 
     /**
