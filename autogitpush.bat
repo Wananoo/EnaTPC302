@@ -11,4 +11,4 @@ git commit -m" %MSG% "
 
 git push origin master
 
-PAUSE
+@PAUSE
