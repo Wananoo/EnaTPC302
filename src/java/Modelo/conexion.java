@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 public class conexion {
     public String user="root";
-    public String pass="babo997711X";
+    public String pass="";
     public String host="localhost";
     public String port="3306";
     public String database="requerimiento";
