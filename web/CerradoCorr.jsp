@@ -1,6 +1,6 @@
 <%-- 
-    Document   : IngresadoErr
-    Created on : Jul 11, 2020, 4:11:47 PM
+    Document   : CerradoCorr
+    Created on : Jul 15, 2020, 1:22:11 AM
     Author     : wanan
 --%>
 
@@ -24,22 +24,22 @@
                 margin-bottom: 20px;
             }
         </style>
-        <title>Error</title>
+        <title>Cerrado Correctamente</title>
     </head>
     <body>
         <div class="content">
-        <h1>Error al Ingresar</h1>
+        <h1>Requerimiento Cerrado Correctamente!</h1>
         <div>
             <p><a href="Menu.jsp"> <button>Volver al Menu</button></a>
         </div>
         <div>
-            <p><a href="IngresarR.jsp"> <button>Ingresar requerimiento nuevamente</button></a>
+            <p><a href="CerrarR.jsp"> <button>Cerrar otro requerimiento</button></a>
+        </div>
+        <div>
+            <p><a href="IngresarR.jsp"> <button>Ingresar requerimiento</button></a>
         </div>
         <div>
             <p><a href="ConsultarR.jsp"> <button>Consultar Requerimiento</button></a>
-        </div>
-        <div>
-            <p><a href="CerrarR.jsp"> <button>Cerrar requerimiento</button></a>
         </div>
         </div>
     </body>

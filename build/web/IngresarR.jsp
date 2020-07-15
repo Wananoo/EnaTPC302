@@ -36,12 +36,21 @@
         Gerencia:&nbsp;
         <% 
             Consultas cons = new Consultas();
-            List<String> Drop = cons.Listar("Gerencias","Gerencias  "); 
+            List<String> GerenciasDrop = cons.Listar("Gerencias","Gerencias  "); 
         %>
         <select id = "GerenciaDrop" name="GerenciaDrop" onchange="submit();">>
-            <%for (int i = 0; i<Drop.size();i++){%>
-            <option><%=Drop.get(i)%></option>
-            <%}%>
+            <option>--Seleccione--</option>
+            <%for (int i = 0; i<GerenciasDrop.size();i++){
+            if (GerenciasDrop.get(i).equals(request.getParameter("GerenciaDrop")))
+            {
+                %><option selected><%=GerenciasDrop.get(i)%></option><%
+            }
+            else
+            {
+                %><option><%=GerenciasDrop.get(i)%></option><%
+            }
+            
+            }%>
         </select>
          <br>
         Departamento:&nbsp;
@@ -50,10 +59,19 @@
             Gerencia = "\""+Gerencia+"\"";
             List<String> Departamentos = cons.Listar("Departamentos","Departamentos inner join Gerencias on Gerencias.ID=Departamentos.Gerencia where Gerencias.Nombre="+Gerencia);
         %>
-        <select name="DepartamentosDrop" onselect="GerenciaDrop.freeze();" onchange="submit();">
-            <%for (int i = 0; i<Departamentos.size();i++){%>
-            <option><%=Departamentos.get(i)%></option>
-            <%}%>
+        <select name="DepartamentosDrop" onchange="submit();">
+            <option>--Seleccione--</option>
+            <%for (int j = 0; j<Departamentos.size();j++){
+            if (Departamentos.get(j).equals(request.getParameter("DepartamentosDrop")))
+            {
+                %><option selected><%=Departamentos.get(j)%></option><%
+            }
+            else
+            {
+                %><option><%=Departamentos.get(j)%></option><%
+            }
+            
+            }%>
         </select>
          <br>
         Encargado:
@@ -62,10 +80,19 @@
             Departamento = "\""+Departamento+"\"";
             List<String> Encargado = cons.Listar("Empleados","Empleados inner join Departamentos on Departamentos.ID=Empleados.Departamento where Departamentos.Nombre="+Departamento);
         %>
-        <select name="EncargadoDrop" onselect="DepartamentosDrop.freeze();">
-            <%for (int i = 0; i<Encargado.size();i++){%>
-            <option><%=Encargado.get(i)%></option>
-            <%}%>
+        <select name="EncargadoDrop">
+            <option>--Seleccione--</option>
+            <%for (int i = 0; i<Encargado.size();i++){
+            if (Encargado.get(i).equals(request.getParameter("EncargadoDrop")))
+            {
+                %><option selected><%=Encargado.get(i)%></option><%
+            }
+            else
+            {
+                %><option><%=Encargado.get(i)%></option><%
+            }
+            
+            }%>
         </select>
          <br>
          Requerimiento:
@@ -74,7 +101,7 @@
          <br><br>
         <input type="submit" formaction="Subir" value="Guardar" />
         </form>
-        
+        <p><p><p><a href="Menu.jsp"> <button>Volver al Menu</button></a>
         </div>
         </jsp:useBean>
     </body>

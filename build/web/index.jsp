@@ -23,6 +23,10 @@
         <title>Login</title>
         <div class="content">
         <h1>Autenticacion</h1>
+        <%if (request.getParameter("error").equals("1"))
+        {%><script type="text/javascript">
+    alert("Credenciales incorrectas");
+</script> <%}%>
         <form action="Login" method="get">
             <table>
                 <tr>

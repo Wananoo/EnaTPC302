@@ -1,8 +1,9 @@
 <%-- 
-    Document   : IngresarR
-    Created on : Jul 11, 2020, 12:51:28 AM
+    Document   : CerrarR
+    Created on : Jul 15, 2020, 1:08:06 AM
     Author     : wanan
 --%>
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="Modelo.Consultas"%>
@@ -25,13 +26,17 @@
             div {
                 margin-bottom: 20px;
             }
+            table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
         </style>
-        <title>Ingresar Requerimiento</title>
+        <title>Cerrar Requerimientos</title>
     </head>
-    <body onload="GerenciaDrop.freeze()">
+    <body>
         <jsp:useBean id= "ConsultaJSP" scope= "page" class= "Modelo.Consultas" type= "Modelo.Consultas">
         <div class="content">
-        <h1>Ingresar Requerimiento </h1>
+        <h1>Cerrar Requerimientos </h1>
         <form action="#" name="form1">
         Gerencia:&nbsp;
         <% 
@@ -39,7 +44,7 @@
             List<String> GerenciasDrop = cons.Listar("Gerencias","Gerencias  "); 
         %>
         <select id = "GerenciaDrop" name="GerenciaDrop" onchange="submit();">>
-            <option>--Seleccione--</option>
+            <option selected>Todas</option>
             <%for (int i = 0; i<GerenciasDrop.size();i++){
             if (GerenciasDrop.get(i).equals(request.getParameter("GerenciaDrop")))
             {
@@ -60,7 +65,7 @@
             List<String> Departamentos = cons.Listar("Departamentos","Departamentos inner join Gerencias on Gerencias.ID=Departamentos.Gerencia where Gerencias.Nombre="+Gerencia);
         %>
         <select name="DepartamentosDrop" onchange="submit();">
-            <option>--Seleccione--</option>
+            <option selected>Todos</option>
             <%for (int j = 0; j<Departamentos.size();j++){
             if (Departamentos.get(j).equals(request.getParameter("DepartamentosDrop")))
             {
@@ -81,7 +86,7 @@
             List<String> Encargado = cons.Listar("Empleados","Empleados inner join Departamentos on Departamentos.ID=Empleados.Departamento where Departamentos.Nombre="+Departamento);
         %>
         <select name="EncargadoDrop">
-            <option>--Seleccione--</option>
+            <option selected>Todos</option>
             <%for (int i = 0; i<Encargado.size();i++){
             if (Encargado.get(i).equals(request.getParameter("EncargadoDrop")))
             {
@@ -94,15 +99,40 @@
             
             }%>
         </select>
-         <br>
-         Requerimiento:
-         <br>
-         <textarea  id="req" name="req" rows="4" cols="50"></textarea>
          <br><br>
-        <input type="submit" formaction="Subir" value="Guardar" />
+        <input type="submit" value="Buscar" />
         </form>
+        <table style="margin-left:auto;margin-right:auto;">
+            <tr>
+                <th>ID</th>
+                <th>Gerencia</th>
+                <th>Departamento</th>
+                <th>Encargado</th>
+                <th>Detalle</th>
+                <th></th>
+            </tr>
+        <%
+            List<ArrayList<String>> Buscar = cons.Buscar(request.getParameter("GerenciaDrop"),
+                    request.getParameter("DepartamentosDrop"),request.getParameter("EncargadoDrop"));
+            for (int i=0; i<Buscar.size();i++)
+            {
+        %><form action="Cerrar" method="get">
+                <tr>
+                    <td><%=Buscar.get(i).get(0)%></td>
+                    <td><%=cons.IDaNombre(Buscar.get(i).get(1),"Gerencias") %></td>
+                    <td><%=cons.IDaNombre(Buscar.get(i).get(2),"Departamentos") %></td>
+                    <td><%=cons.IDaNombre(Buscar.get(i).get(3),"Empleados") %></td>
+                    <td><%=Buscar.get(i).get(4)%></td>
+                    <input type="hidden" name="IDreq" value="<%=Buscar.get(i).get(0)%>"/>
+                    <td><input type="submit" value="Cerrar" /></td>
+                </tr>
+            </form>
+            <%}
+        %>
+        </table>
         <p><p><p><a href="Menu.jsp"> <button>Volver al Menu</button></a>
         </div>
         </jsp:useBean>
     </body>
 </html>
+

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : IngresadoErr
-    Created on : Jul 11, 2020, 4:11:47 PM
+    Document   : CerradoErr
+    Created on : Jul 15, 2020, 1:22:21 AM
     Author     : wanan
 --%>
 
@@ -28,18 +28,18 @@
     </head>
     <body>
         <div class="content">
-        <h1>Error al Ingresar</h1>
+        <h1>Error al Cerrar Requerimiento ID= <%=request.getParameter("ID")%></h1>
         <div>
             <p><a href="Menu.jsp"> <button>Volver al Menu</button></a>
         </div>
         <div>
-            <p><a href="IngresarR.jsp"> <button>Ingresar requerimiento nuevamente</button></a>
+            <p><a href="CerrarR.jsp"> <button>Reintentar Cerrar requerimiento</button></a>
+        </div>
+        <div>
+            <p><a href="IngresarR.jsp"> <button>Ingresar requerimiento</button></a>
         </div>
         <div>
             <p><a href="ConsultarR.jsp"> <button>Consultar Requerimiento</button></a>
-        </div>
-        <div>
-            <p><a href="CerrarR.jsp"> <button>Cerrar requerimiento</button></a>
         </div>
         </div>
     </body>

@@ -84,3 +84,7 @@ insert into Empleados values
 select * from usuarios;
 insert into Usuarios values
 (1,"Eugenio",1,"Wananoo","pass",0,1);
+
+select * from requerimientos;
+
+delete from requerimientos where ID=2;
